@@ -19,7 +19,7 @@ export const donationsController = {
                 const donation = {
                     amount: donationPayload.amount,
                     method: donationPayload.method,
-                    donor: loggedInUser.email,
+                    donor: loggedInUser._id,
                     candidate: donationPayload.candidate,
                     lat: donationPayload.lat,
                     lng: donationPayload.lng,

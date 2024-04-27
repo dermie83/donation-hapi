@@ -20,4 +20,10 @@ export type User = {
     donor: User | string;
     lat: number;
     lng: number;
-  }
+  };
+
+  export type Db = {
+    userStore: any;
+    candidateStore: any;
+    donationStore: any;
+  };

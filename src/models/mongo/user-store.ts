@@ -2,12 +2,12 @@ import { User } from "../../types/donation-types.js";
 import { UserMongoose } from "./user.js";
 
 export const userStore = {
-  async find() {
+  async find(): Promise<User[]> {
     const users = await UserMongoose.find().lean();
     return users;
   },
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<User | null> {
     if (id) {
       const user = await UserMongoose.findOne({ _id: id }).lean();
       return user;
@@ -15,13 +15,13 @@ export const userStore = {
     return null;
   },
 
-  async add(user: User) {
+  async add(user: any): Promise<User | null> {
     const newUser = new UserMongoose(user);
     const userObj = await newUser.save();
     return userObj;
   },
 
-  async findBy(email: string) {
+  async findBy(email: string): Promise<User | null> {
     const user = await UserMongoose.findOne({ email: email }).lean();
     return user;
   },
