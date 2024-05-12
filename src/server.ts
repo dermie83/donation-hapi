@@ -6,13 +6,13 @@ import Handlebars from "handlebars";
 
 import dotenv from "dotenv";
 import path from "path";
+import jwt from "hapi-auth-jwt2";
 import { fileURLToPath } from "url";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { webRoutes } from "./web-routes.js";
 import { connectDb } from "./models/db.js";
 import { apiRoutes } from "./api-routes.js";
 import { validate } from "./api/jwt-utils.js";
-import jwt from "hapi-auth-jwt2";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

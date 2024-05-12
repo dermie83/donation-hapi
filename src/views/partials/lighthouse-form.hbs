@@ -1,0 +1,28 @@
+<form action="/lighthouse" method="POST">
+  <div class="field">
+    <label class="label">Enter Lighthouse Name</label>
+    <input class="input" id="name" type="text" placeholder="Enter name" name="name">
+  </div>
+  <div>
+    <div class=" box field is-horizontal">
+      <div class="field-body">
+        <div class="select">
+          <select name="group">
+            {{#each groups}}
+            <option value={{_id}}> {{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field mt-2">
+    {{> coordinates}}
+  </div>
+  <div class="field">
+    <div class="control">
+      <button class="button is-success is-fullwidth">Add Lighthouse</button>
+    </div>
+  </div>
+  {{> lighthouse-image}}
+</form>

@@ -1,0 +1,24 @@
+<Card title="Donations to date">
+  <table class="table is-fullwidth">
+    <thead>
+      <th>Name</th>
+      <th>Group</th>
+      <th>User</th>
+    </thead>
+    <tbody>
+      {{#each lighthouses}}
+      <tr>
+        <td>
+          {{name}}
+        </td>
+        <td>
+          {{group.name}}
+        </td>
+        <td>
+          {{user.firstName}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</Card>

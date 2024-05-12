@@ -1,8 +1,8 @@
 import { connectMongo } from "./mongo/connect.js";
 export const db = {
     userStore: null,
-    candidateStore: null,
-    donationStore: null,
+    groupStore: null,
+    lighthouseStore: null,
 };
 export function connectDb(dbType) {
     switch (dbType) {

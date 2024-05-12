@@ -4,8 +4,8 @@ import Mongoose from "mongoose";
 import * as mongooseSeeder from "mais-mongoose-seeder";
 import { userStore } from "./user-store.js";
 import { seedData } from "./seed-data.js";
-import { donationStore } from "./donation-store.js";
-import { candidateStore } from "./candidate-store.js";
+import { lighthouseStore } from "./lighthouse-store.js";
+import { groupStore } from "./group-store.js";
 const seedLib = mongooseSeeder.default;
 async function seed() {
     const seeder = seedLib(Mongoose);
@@ -18,8 +18,8 @@ export function connectMongo(db) {
     Mongoose.connect(process.env.db);
     const mongoDb = Mongoose.connection;
     db.userStore = userStore;
-    db.candidateStore = candidateStore;
-    db.donationStore = donationStore;
+    db.groupStore = groupStore;
+    db.lighthouseStore = lighthouseStore;
     mongoDb.on("error", (err) => {
         console.log(`database connection error: ${err}`);
     });

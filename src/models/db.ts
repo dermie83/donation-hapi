@@ -1,10 +1,10 @@
-import { Db } from "../types/donation-types.js";
+import { Db } from "../types/lighthouse-types.js";
 import { connectMongo } from "./mongo/connect.js";
 
 export const db: Db = {
   userStore: null,
-  candidateStore: null,
-  donationStore: null,
+  groupStore: null,
+  lighthouseStore: null,
 };
 
 export function connectDb(dbType: string) {

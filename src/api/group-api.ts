@@ -2,14 +2,14 @@ import Boom from "@hapi/boom";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { db } from "../models/db.js";
 
-export const candidatesApi = {
+export const groupApi = {
   find: {
     auth: {
       strategy: "jwt",
     },
     handler: async function (request: Request, h: ResponseToolkit) {
-      const candidates = await db.candidateStore.find();
-      return h.response(candidates).code(200);
+      const groups = await db.groupStore.find();
+      return h.response(groups).code(200);
     },
   },
 
@@ -19,13 +19,13 @@ export const candidatesApi = {
     },
     handler: async function (request: Request, h: ResponseToolkit) {
       try {
-        const candidate = await db.candidateStore.findOne(request.params.id);
-        if (candidate === null) {
-          return Boom.notFound("No Candidate with this id");
+        const group = await db.groupStore.findOne(request.params.id);
+        if (group === null) {
+          return Boom.notFound("No Group with this id");
         }
-        return h.response(candidate).code(200);
+        return h.response(group).code(200);
       } catch (err) {
-        return Boom.notFound("No Candidate with this id");
+        return Boom.notFound("No Group with this id");
       }
     },
   },
@@ -35,11 +35,11 @@ export const candidatesApi = {
       strategy: "jwt",
     },
     handler: async function (request: Request, h: ResponseToolkit) {
-      const candidate = await db.candidateStore.add(request.payload);
-      if (candidate !== null) {
-        return h.response(candidate).code(201);
+      const group = await db.groupStore.add(request.payload);
+      if (group !== null) {
+        return h.response(group).code(201);
       }
-      return Boom.badImplementation("error creating candidate");
+      return Boom.badImplementation("error creating group");
     },
   },
 
@@ -48,7 +48,7 @@ export const candidatesApi = {
       strategy: "jwt",
     },
     handler: async function (request: Request, h: ResponseToolkit) {
-      await db.candidateStore.delete();
+      await db.groupStore.delete();
       return h.response().code(204);
     },
   },
@@ -58,7 +58,7 @@ export const candidatesApi = {
       strategy: "jwt",
     },
     handler: async function (request: Request, h: ResponseToolkit) {
-      await db.candidateStore.deleteOne(request.params.id);
+      await db.groupStore.deleteOne(request.params.id);
       return h.response().code(204);
     },
   },

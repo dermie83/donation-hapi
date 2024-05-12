@@ -1,5 +1,5 @@
 export type Db = {
     userStore: any;
-    candidateStore: any;
-    donationStore: any;
+    groupStore: any;
+    lighthouseStore: any;
   };

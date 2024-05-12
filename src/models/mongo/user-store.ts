@@ -1,4 +1,4 @@
-import { User } from "../../types/donation-types.js";
+import { User } from "../../types/lighthouse-types.js";
 import { UserMongoose } from "./user.js";
 
 export const userStore = {

@@ -1,5 +1,5 @@
 import { accountsController } from "./controllers/accounts-controller.js";
-import { donationsController } from "./controllers/donations-controller.js";
+import { lightouseController } from "./controllers/lighthouse-controller.js";
 export const webRoutes = [
     { method: "GET", path: "/", config: accountsController.index },
     { method: "GET", path: "/signup", config: accountsController.showSignup },
@@ -7,9 +7,10 @@ export const webRoutes = [
     { method: "GET", path: "/logout", config: accountsController.logout },
     { method: "POST", path: "/register", config: accountsController.signup },
     { method: "POST", path: "/authenticate", config: accountsController.login },
-    { method: "GET", path: "/donate", config: donationsController.index },
-    { method: "POST", path: "/donate", config: donationsController.donate },
-    { method: "GET", path: "/report", config: donationsController.report },
+    { method: "GET", path: "/lighthouse", config: lightouseController.index },
+    { method: "POST", path: "/lighthouse", config: lightouseController.add },
+    { method: "GET", path: "/report", config: lightouseController.report },
+    // { method: "POST" as const, path: "/lighthouse/uploadimage", config: lightouseController.uploadImage },
     {
         method: "GET",
         path: "/{param*}",

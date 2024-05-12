@@ -2,7 +2,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { Request } from "@hapi/hapi";
 import dotenv from "dotenv";
 import { db } from "../models/db.js";
-import { User } from "../types/donation-types.js";
+import { User } from "../types/lighthouse-types.js";
 
 dotenv.config();
 const cookiePassword = process.env.cookie_password as string;

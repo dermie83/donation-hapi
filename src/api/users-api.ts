@@ -2,7 +2,7 @@ import Boom from "@hapi/boom";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { db } from "../models/db.js";
 import { createToken } from "./jwt-utils.js";
-import { User } from "../types/donation-types.js";
+import { User } from "../types/lighthouse-types.js";
 
 export const userApi = {
   find: {
