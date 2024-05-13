@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+
 const donationSchema = new Schema({
     amount: Number,
     method: String,
@@ -6,9 +7,9 @@ const donationSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
     },
-    candidate: {
+    lighthouse: {
         type: Schema.Types.ObjectId,
-        ref: "Candidate",
+        ref: "Lighthouse",
     },
     lat: String,
     lng: String,

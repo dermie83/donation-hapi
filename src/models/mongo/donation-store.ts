@@ -12,7 +12,7 @@ export const donationStore = {
   },
 
   async findBy(id: string): Promise<Donation | null> {
-    const donation = await DonationMongoose.findOne({ candidate: id });
+    const donation = await DonationMongoose.findOne({ lighthouse: id });
     if (!donation) {
       return null;
     }

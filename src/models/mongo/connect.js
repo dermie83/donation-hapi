@@ -5,7 +5,8 @@ import * as mongooseSeeder from "mais-mongoose-seeder";
 import { userStore } from "./user-store.js";
 import { seedData } from "./seed-data.js";
 import { donationStore } from "./donation-store.js";
-import { candidateStore } from "./candidate-store.js";
+import { lighthouseStore } from "./lighthouse-store.js";
+
 const seedLib = mongooseSeeder.default;
 async function seed() {
     const seeder = seedLib(Mongoose);
@@ -17,16 +18,18 @@ export function connectMongo(db) {
     Mongoose.set("strictQuery", true);
     Mongoose.connect(process.env.db);
     const mongoDb = Mongoose.connection;
+    
     db.userStore = userStore;
-    db.candidateStore = candidateStore;
+    db.lighthouseStore = lighthouseStore;
     db.donationStore = donationStore;
+
     mongoDb.on("error", (err) => {
         console.log(`database connection error: ${err}`);
     });
     mongoDb.on("disconnected", () => {
         console.log("database disconnected");
     });
-    mongoDb.once("open", function () {
+    mongoDb.once("open", () => {
         console.log(`database connected to ${mongoDb.name} on ${mongoDb.host}`);
         seed();
     });

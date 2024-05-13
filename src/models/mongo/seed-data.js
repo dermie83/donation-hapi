@@ -20,8 +20,8 @@ export const seedData = {
             password: "secret",
         },
     },
-    candidates: {
-        _model: "Candidate",
+    lighthouses: {
+        _model: "Lighthouse",
         lisa: {
             firstName: "Lisa",
             lastName: "Simpson",
@@ -44,7 +44,7 @@ export const seedData = {
             amount: 40,
             method: "paypal",
             donor: "->users.bart",
-            candidate: "->candidates.lisa",
+            lighthouse: "->lighthouses.lisa",
             lat: "52.161290",
             lng: "-7.51540",
         },
@@ -52,7 +52,7 @@ export const seedData = {
             amount: 90,
             method: "direct",
             donor: "->users.marge",
-            candidate: "->candidates.lisa",
+            lighthouse: "->lighthouses.lisa",
             lat: "52.261290",
             lng: "-7.231540",
         },
@@ -60,7 +60,7 @@ export const seedData = {
             amount: 430,
             method: "paypal",
             donor: "->users.homer",
-            candidate: "->candidates.ned",
+            lighthouse: "->lighthouses.ned",
             lat: "52.361290",
             lng: "-7.241540",
         },

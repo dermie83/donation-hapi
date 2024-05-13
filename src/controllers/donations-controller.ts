@@ -5,11 +5,11 @@ export const donationsController = {
   index: {
     handler: async function (request: Request, h: ResponseToolkit) {
       const loggedInUser = request.auth.credentials;
-      const candidates = await db.candidateStore.find();
+      const lighthouses = await db.lighthouseStore.find();
       return h.view("donate", {
         title: "Make a Donation",
         user: loggedInUser,
-        candidates: candidates,
+        lighthouses: lighthouses,
       });
     },
   },
@@ -22,7 +22,7 @@ export const donationsController = {
           amount: donationPayload.amount,
           method: donationPayload.method,
           donor: loggedInUser._id,
-          candidate: donationPayload.candidate,
+          lighthouse: donationPayload.lighthouse,
           lat: donationPayload.lat,
           lng: donationPayload.lng,
         };

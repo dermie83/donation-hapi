@@ -1,7 +1,7 @@
 import Boom from "@hapi/boom";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { db } from "../models/db.js";
-import { Candidate, Donation } from "../types/donation-types.js";
+import { Lighthouse, Donation } from "../types/donation-types.js";
 
 export const donationsApi = {
   findAll: {
@@ -18,7 +18,7 @@ export const donationsApi = {
     },
   },
 
-  findByCandidate: {
+  findByLighthouse: {
     auth: {
       strategy: "jwt",
     },
@@ -33,8 +33,8 @@ export const donationsApi = {
       strategy: "jwt",
     },
     handler: async function (request: Request, h: ResponseToolkit) {
-      const candidate = (await db.candidateStore.findOne(request.params.id)) as Candidate;
-      if (candidate === null) {
+      const lighthouse = (await db.lighthouseStore.findOne(request.params.id)) as Lighthouse;
+      if (lighthouse === null) {
         return Boom.notFound("No Candidate with this id");
       }
       const donationPayload = request.payload as Donation;
@@ -42,7 +42,7 @@ export const donationsApi = {
         amount: donationPayload.amount,
         method: donationPayload.method,
         donor: request.auth.credentials._id,
-        candidate: candidate,
+        lighthouse: lighthouse,
         lat: donationPayload.lat,
         lng: donationPayload.lng,
       };

@@ -1,5 +1,6 @@
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+
 export const donationsApi = {
     findAll: {
         auth: {
@@ -15,7 +16,7 @@ export const donationsApi = {
             }
         },
     },
-    findByCandidate: {
+    findByLighthouse: {
         auth: {
             strategy: "jwt",
         },
@@ -29,16 +30,16 @@ export const donationsApi = {
             strategy: "jwt",
         },
         handler: async function (request, h) {
-            const candidate = (await db.candidateStore.findOne(request.params.id));
-            if (candidate === null) {
-                return Boom.notFound("No Candidate with this id");
+            const lighthouse = (await db.lighthouseStore.findOne(request.params.id));
+            if (lighthouse === null) {
+                return Boom.notFound("No lighthouse with this id");
             }
             const donationPayload = request.payload;
             const donation = {
                 amount: donationPayload.amount,
                 method: donationPayload.method,
                 donor: request.auth.credentials._id,
-                candidate: candidate,
+                lighthouse: lighthouse,
                 lat: donationPayload.lat,
                 lng: donationPayload.lng,
             };

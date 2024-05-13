@@ -2,13 +2,13 @@ import Boom from "@hapi/boom";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { db } from "../models/db.js";
 
-export const candidatesApi = {
+export const lighthousesApi = {
   find: {
     auth: {
       strategy: "jwt",
     },
     handler: async function (request: Request, h: ResponseToolkit) {
-      const candidates = await db.candidateStore.find();
+      const candidates = await db.lighthouseStore.find();
       return h.response(candidates).code(200);
     },
   },
@@ -19,11 +19,11 @@ export const candidatesApi = {
     },
     handler: async function (request: Request, h: ResponseToolkit) {
       try {
-        const candidate = await db.candidateStore.findOne(request.params.id);
-        if (candidate === null) {
+        const lighthouse = await db.lighthouseStore.findOne(request.params.id);
+        if (lighthouse === null) {
           return Boom.notFound("No Candidate with this id");
         }
-        return h.response(candidate).code(200);
+        return h.response(lighthouse).code(200);
       } catch (err) {
         return Boom.notFound("No Candidate with this id");
       }
@@ -35,11 +35,11 @@ export const candidatesApi = {
       strategy: "jwt",
     },
     handler: async function (request: Request, h: ResponseToolkit) {
-      const candidate = await db.candidateStore.add(request.payload);
-      if (candidate !== null) {
-        return h.response(candidate).code(201);
+      const lighthouse = await db.lighthouseStore.add(request.payload);
+      if (lighthouse !== null) {
+        return h.response(lighthouse).code(201);
       }
-      return Boom.badImplementation("error creating candidate");
+      return Boom.badImplementation("error creating lighthouse");
     },
   },
 
@@ -48,7 +48,7 @@ export const candidatesApi = {
       strategy: "jwt",
     },
     handler: async function (request: Request, h: ResponseToolkit) {
-      await db.candidateStore.delete();
+      await db.lighthouseStore.delete();
       return h.response().code(204);
     },
   },
@@ -58,7 +58,7 @@ export const candidatesApi = {
       strategy: "jwt",
     },
     handler: async function (request: Request, h: ResponseToolkit) {
-      await db.candidateStore.deleteOne(request.params.id);
+      await db.lighthouseStore.deleteOne(request.params.id);
       return h.response().code(204);
     },
   },

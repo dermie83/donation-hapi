@@ -6,7 +6,7 @@ export type User = {
     _id: string;
   };
   
-  export type Candidate = {
+  export type Lighthouse = {
     firstName: string;
     lastName: string;
     office: string;
@@ -16,7 +16,7 @@ export type User = {
   export interface Donation {
     amount: number;
     method: string;
-    candidate: Candidate | string;
+    lighthouse: Lighthouse | string;
     donor: User | string;
     lat: number;
     lng: number;
@@ -24,6 +24,6 @@ export type User = {
 
   export type Db = {
     userStore: any;
-    candidateStore: any;
+    lighthouseStore: any;
     donationStore: any;
   };

@@ -3,7 +3,7 @@ import { connectMongo } from "./mongo/connect.js";
 
 export const db: Db = {
   userStore: null,
-  candidateStore: null,
+  lighthouseStore: null,
   donationStore: null,
 };
 

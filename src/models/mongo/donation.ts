@@ -8,9 +8,9 @@ const donationSchema = new Schema<Donation>({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  candidate: {
+  lighthouse: {
     type: Schema.Types.ObjectId,
-    ref: "Candidate",
+    ref: "Lighthouse",
   },
   lat: String,
   lng: String,
