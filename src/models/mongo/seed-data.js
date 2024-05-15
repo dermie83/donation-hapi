@@ -22,18 +22,18 @@ export const seedData = {
     },
     lighthouses: {
         _model: "Lighthouse",
-        lisa: {
-            firstName: "Lisa",
+        hook: {
+            firstName: "Hook",
             lastName: "Simpson",
             office: "President",
         },
-        maggie: {
-            firstName: "Maggie",
+        blackrock: {
+            firstName: "Blackrock",
             lastName: "Simpson",
             office: "President",
         },
-        ned: {
-            firstName: "Ned",
+        howth: {
+            firstName: "Howth",
             lastName: "Flanders",
             office: "President",
         },
@@ -44,7 +44,7 @@ export const seedData = {
             amount: 40,
             method: "paypal",
             donor: "->users.bart",
-            lighthouse: "->lighthouses.lisa",
+            lighthouse: "->lighthouses.howth",
             lat: "52.161290",
             lng: "-7.51540",
         },
@@ -52,7 +52,7 @@ export const seedData = {
             amount: 90,
             method: "direct",
             donor: "->users.marge",
-            lighthouse: "->lighthouses.lisa",
+            lighthouse: "->lighthouses.blackrock",
             lat: "52.261290",
             lng: "-7.231540",
         },
@@ -60,7 +60,7 @@ export const seedData = {
             amount: 430,
             method: "paypal",
             donor: "->users.homer",
-            lighthouse: "->lighthouses.ned",
+            lighthouse: "->lighthouses.hook",
             lat: "52.361290",
             lng: "-7.241540",
         },

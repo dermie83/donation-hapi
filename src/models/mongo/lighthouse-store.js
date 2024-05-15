@@ -16,4 +16,11 @@ export const lighthouseStore = {
         }).lean();
         return lighthouse;
     },
+    async deleteLighthouse(id) {
+        try {
+          await LighthouseMongoose.deleteOne({ _id: id });
+        } catch (error) {
+          console.log("bad id");
+        }
+      },
 };

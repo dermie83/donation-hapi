@@ -12,11 +12,20 @@ export const lighthouseStore = {
     return lighthouse;
   },
 
+
   async findBy(lastName: string, firstName: string): Promise<Lighthouse | null> {
     const lighthouse = await LighthouseMongoose.findOne({
       lastName,
       firstName,
     }).lean();
     return lighthouse;
+  },
+
+  async deleteLighthouse(id:string) {
+    try {
+      await LighthouseMongoose.deleteOne({ _id: id });
+    } catch (error) {
+      console.log("bad id");
+    }
   },
 };

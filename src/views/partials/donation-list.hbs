@@ -21,6 +21,16 @@
         <td>
           {{donor}}
         </td>
+        <td>
+        <a href="/report/deletedonation/{{_id}}" class="ui icon button">
+          <i class="fas fa-trash"></i>
+        </a>
+      </td>
+      <td>
+        <a href="/report/editdonation/{{_id}}" class="ui icon button">
+          <i class="fas fa-edit"></i>
+        </a>
+      </td>
       </tr>
       {{/each}}
     </tbody>

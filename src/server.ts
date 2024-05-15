@@ -66,7 +66,7 @@ function initSecurityStrategies(server: Server) {
 async function init() {
   importEnvs();
   const server = Hapi.server({
-    port: process.env.PORT || 4000,
+    port: process.env.PORT || 3000,
     routes: { cors: true },
   });
   await initPlugins(server);

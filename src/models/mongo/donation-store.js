@@ -24,4 +24,27 @@ export const donationStore = {
     async delete() {
         await DonationMongoose.deleteMany({});
     },
+
+    async deleteDonation(id) {
+        try {
+          await DonationMongoose.deleteOne({ _id: id });
+        } catch (error) {
+          console.log("bad id");
+        }
+    },
+    async getDonationById(id) {
+        if (id) {
+          const donation = await DonationMongoose.findOne({ _id: id }).lean();
+          return donation;
+        }
+        return null;
+      },
+    
+      async updateDonation(id, updatedDonation) {
+        const donation = await DonationMongoose.findOne({ _id: id });
+        donation.amount = updatedDonation.amount;
+        // group.img = updatedGroup.img;
+        await donation.save();
+      },
+      
 };

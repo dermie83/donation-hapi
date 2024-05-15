@@ -1,5 +1,6 @@
 import { accountsController } from "./controllers/accounts-controller.js";
 import { donationsController } from "./controllers/donations-controller.js";
+
 export const webRoutes = [
     { method: "GET", path: "/", config: accountsController.index },
     { method: "GET", path: "/signup", config: accountsController.showSignup },
@@ -10,6 +11,11 @@ export const webRoutes = [
     { method: "GET", path: "/donate", config: donationsController.index },
     { method: "POST", path: "/donate", config: donationsController.donate },
     { method: "GET", path: "/report", config: donationsController.report },
+    { method: "GET", path: "/report/deletedonation/{id}", config: donationsController.deleteDonation },
+    { method: "GET", path: "/report/editdonation/{id}", config: donationsController.editDonation },
+    { method: "POST", path: "/report/updatedonation/{id}", config: donationsController.updateDonation },
+    
+
     {
         method: "GET",
         path: "/{param*}",

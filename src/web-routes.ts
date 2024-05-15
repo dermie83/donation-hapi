@@ -11,7 +11,11 @@ export const webRoutes = [
 
   { method: "GET" as const, path: "/donate", config: donationsController.index },
   { method: "POST" as const, path: "/donate", config: donationsController.donate },
+  
   { method: "GET" as const, path: "/report", config: donationsController.report },
+  { method: "GET" as const, path: "/report/deletedonation/{id}", config: donationsController.deleteDonation },
+  { method: "GET" as const, path: "/report/editdonation/{id}", config: donationsController.editDonation },
+  { method: "POST" as const, path: "/report/updatedonation/{id}", config: donationsController.updateDonation },
 
   {
     method: "GET" as const,

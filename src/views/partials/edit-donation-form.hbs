@@ -1,0 +1,52 @@
+<form class="box" action="/report/updatedonation/{{donation._id}}" method="POST">
+  <div class="field">
+    <label class="label">Enter Amount</label>
+    <input id= "amount" class="input" type="number" placeholder="Euros" name="amount" value={{donation.amount}} />
+  </div>
+  <div>
+    <div class=" box field is-horizontal">
+      <div class="field-body ml-6">
+        <div class="control is-expanded mt-2">
+          <input class=" radio" type="radio" name="method" value="paypal" />
+          Paypal
+          <input class="radio" type="radio" name="method" value="cash" />
+          Cash
+        </div>
+      </div>
+      <div class="field-body">
+        <div class="select">
+          <select name="lighthouse">
+            {{#each donation.lighthouse}}
+            <option value={{_id}}> {{lastName}},{{firstName}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box field is-horizontal">
+    <div class="field-label is-normal">
+      <label for="lng" class="label">Lat</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control is-expanded">
+          <input id="lng" name="lng" class="input" type="float" value={{donation.lng}} />
+        </p>
+      </div>
+      <div class="field-label is-normal">
+        <label for="lat" class="label">Lng</label>
+      </div>
+      <div class="field">
+        <p class="control is-expanded">
+          <input id="lat" name="lat" class="input" type="float" value={{donation.lat}} />
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <button class="button is-success is-fullwidth">Update Donate</button>
+    </div>
+  </div>
+</form>

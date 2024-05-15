@@ -19,6 +19,14 @@ export const donationStore = {
     return donation;
   },
 
+  async getDonationById(id:string) {
+    if (id) {
+      const donation = await DonationMongoose.findOne({ _id: id }).lean();
+      return donation;
+    }
+    return null;
+  },
+
   async add(donation: Donation): Promise<Donation | null> {
     let newDonation = new DonationMongoose({ ...donation });
     await newDonation.save();
@@ -27,5 +35,20 @@ export const donationStore = {
 
   async delete() {
     await DonationMongoose.deleteMany({});
+  },
+
+  async deleteDonation(id:string) {
+    try {
+      await DonationMongoose.deleteOne({ _id: id });
+    } catch (error) {
+      console.log("bad id");
+    }
+  },
+
+  async updateDonation(id:string, updatedDonation:Donation) {
+    const donation = await DonationMongoose.findOne({ _id: id });
+    donation.amount = updatedDonation.amount;
+    // group.img = updatedGroup.img;
+    await donation.save();
   },
 };

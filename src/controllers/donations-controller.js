@@ -44,4 +44,47 @@ export const donationsController = {
             });
         },
     },
+    deleteDonation: {
+        handler: async function (request, h) {
+          // const donation = await db.donationStore.getDonationById(request.params.id);
+          await db.donationStore.deleteDonation(request.params.id);
+          return h.redirect("/report");
+        },
+      },
+      editDonation: {
+        handler: async function (request, h) {
+          const donation = await db.donationStore.getDonationById(request.params.id);
+          console.log("donationID", donation._id)
+          const lighthouse = await db.lighthouseStore.find(request.params.lighthouseid);
+          // console.log("lighthouseID", lighthouse)
+          const viewData = {
+            title: "Lighthouses",
+            donation: donation,
+            lighthouse: lighthouse,
+          };
+          console.log("viewdata",viewData)
+          return h.view("edit-donation", viewData);
+        },
+      },
+      updateDonation: {
+        handler: async function (request, h) {
+          const donation = await db.donationStore.getDonationById(request.params.id);
+          console.log("donationID", donation)
+          const donationPayload = request.payload;
+          
+          const newDonation = {
+            amount: donationPayload.amount,
+            // towerHeight: lighthousePayload.towerHeight,
+            // lightHeight: lighthousePayload.lightHeight,
+            // character: lighthousePayload.character,
+            // daymark: lighthousePayload.daymark,
+            // range: lighthousePayload.range,
+            // latitude: lighthousePayload.latitude,
+            // longitude: lighthousePayload.longitude,
+            // image: lighthousePayload.image,
+          };
+          await db.donationStore.updateDonation(donation, newDonation);
+          return h.redirect(`/report/${donation._id}`);
+        },
+      },
 };

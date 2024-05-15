@@ -1,5 +1,7 @@
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { db } from "../models/db.js";
+import { DonationMongoose } from "../models/mongo/donation.js";
+import { Donation } from "../types/donation-types.js";
 
 export const donationsController = {
   index: {
@@ -45,4 +47,44 @@ export const donationsController = {
       });
     },
   },
+  deleteDonation: {
+    handler: async function (request:Request, h:ResponseToolkit) {
+      // const donation = await db.donationStore.getDonationById(request.params.id);
+      await db.donationStore.deleteDonation(request.params.id);
+      return h.redirect(`/report`);
+    },
+  },
+  editDonation: {
+    handler: async function (request:Request, h:ResponseToolkit) {
+      const donation = await db.donationStore.getDonationById(request.params.id);
+      console.log("donationID", donation._id)
+      const lighthouse = await db.lighthouseStore.findOne(request.params.lighthouseid);
+      console.log("lighthouseID", lighthouse)
+      const viewData = {
+        title: "Lighthouses",
+        donation: donation,
+        lighthouse: lighthouse,
+      };
+      console.log("viewdata",viewData)
+      return h.view("edit-donation", viewData);
+    },
+  },
+  updateDonation: {
+    handler: async function (request:Request, h:ResponseToolkit) {
+      const donation = await db.donationStore.getDonationById(request.params.id);
+      console.log("donationID", donation)
+      const donationPayload = request.payload as any;
+      
+      const newDonation = {
+        amount: donationPayload.amount,
+          method: donationPayload.method,
+          lighthouse: donationPayload.lighthouse,
+          lat: donationPayload.lat,
+          lng: donationPayload.lng,
+      };
+      await db.donationStore.updateDonation(donation, newDonation);
+      return h.redirect(`/report/${donation._id}`);
+    },
+  },
+
 };
